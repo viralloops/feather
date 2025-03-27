@@ -15,7 +15,7 @@ function replace(attrs = {}) {
 
   const elementsToReplace = document.querySelectorAll('[data-feather]');
 
-  Array.from(elementsToReplace).forEach(element =>
+  Array.from(elementsToReplace).filter(element => element.children.length === 0).forEach(element =>
     replaceElement(element, attrs),
   );
 }
@@ -46,8 +46,9 @@ function replaceElement(element, attrs = {}) {
     'image/svg+xml',
   );
   const svgElement = svgDocument.querySelector('svg');
+  element.appendChild(svgElement);
 
-  element.parentNode.replaceChild(svgElement, element);
+  // element.parentNode.replaceChild(svgElement, element);
 }
 
 /**
